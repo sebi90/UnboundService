@@ -1,6 +1,7 @@
 package sebi.unboundservice;
 
 import android.app.Activity;
+import android.app.Service;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,12 +11,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.ArrayList;
 import java.util.IllegalFormatException;
 
 public class ActivityForUnboundService extends Activity {
 
     private EditText editText;
     private int count;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
