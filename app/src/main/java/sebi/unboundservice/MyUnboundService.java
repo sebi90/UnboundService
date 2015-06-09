@@ -38,7 +38,10 @@ public class MyUnboundService extends Service
 
     public int onStartCommand(Intent intent, int flags, int startid)
     {
-        countValue = intent.getIntExtra("count",0);
+        if (intent != null)
+        {
+            countValue = intent.getIntExtra("count",0);
+        }
         Log.d(this.getClass().getName(), "onStartCommand (" + number + " / " +
                 android.os.Process.myPid() + "-" +
                 Thread.currentThread().getName() + ")" + "count: " + countValue);
@@ -58,23 +61,18 @@ public class MyUnboundService extends Service
 
         //}
         return START_STICKY;
-    }
 
-    // aktive threads zählen
-    public synchronized int countActiveThreads()
-    {
-        int count = 0;
-        for (int i = 0; i < threads.size(); i++)
-        {
-            count++;
-        }
-        return count;
+        //Service wird nicht erneut gestartet
+        //return START_NOT_STICKY;
+
+        //Service wird wieder gestartet mit gleichem Inhalt
+        //return START_REDELIVER_INTENT;
     }
 
     // stopSelf fall keine threads mehr laufen
-    public void checkAlive()
+    public void checkThreads()
     {
-        if (countActiveThreads() <= 0){
+        if (threads.size() <= 0){
             stopSelf();
         }
     }
@@ -87,7 +85,7 @@ public class MyUnboundService extends Service
 
         //thread.interrupt();
         // teil d):
-        if (thread != null && thread.getThreadGroup() != null) {
+        if (thread.getThreadGroup() != null) {
             thread.getThreadGroup().interrupt();
         }
     }

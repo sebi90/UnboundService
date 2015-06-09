@@ -39,14 +39,10 @@ class ServiceThread extends Thread
         }
         catch (InterruptedException e){}
 
-        Log.d(this.getClass().getName(), "thread ends: " + service.countActiveThreads());
-
         // aktuellen thread aus array löschen
         service.threads.remove(this);
 
         // überprüfen ob noch threads laufen
-        service.checkAlive();
-
-        Log.d(this.getClass().getName(), "thread ends after remove: " + service.countActiveThreads());
+        service.checkThreads();
     }
 }

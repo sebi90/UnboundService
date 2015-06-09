@@ -19,7 +19,8 @@
         </activity>
 
         <service android:name=".MyUnboundService"
-                tools:ignore="ExportedService">
+                tools:ignore="ExportedService"
+                android:process=":Service">
             <intent-filter>
                 <action android:name="sebi.UNBOUND_SERVICE"  />
                 <category android:name="android.intent.category.DEFAULT" />
