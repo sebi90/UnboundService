@@ -87,7 +87,7 @@ public class MyUnboundService extends Service
 
         //thread.interrupt();
         // teil d):
-        if (thread != null) {
+        if (thread != null && thread.getThreadGroup() != null) {
             thread.getThreadGroup().interrupt();
         }
     }
