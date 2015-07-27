@@ -88,5 +88,7 @@ public class MyUnboundService extends Service
         if (thread.getThreadGroup() != null) {
             thread.getThreadGroup().interrupt();
         }
+
+
     }
 }
